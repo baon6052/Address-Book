@@ -1,0 +1,195 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="resources/css/normalize.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+
+    <title>Administrate - Bao Nguyen</title>
+
+</head>
+
+<body onload="init()">
+    <div class='container'>
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" id="searchBar" onkeyup="searchContacts()" type="search"
+                    placeholder="Search: Forename/Surname" aria-label="Search">
+
+                <select class="form-control" id="companyNames" onchange="loadContactsByCompany()">
+                </select>
+
+                <button type="button" class="btn btn-primary" onclick="loadOrganisation()" id="organisationDetails-btn"
+                    data-target="#newOrganisationModal">
+                    Organisation Details
+                </button>
+
+                <button type="button" class="btn btn-primary" id="person-btn" onclick="newPersonModal()"
+                    data-toggle="modal" data-target="#newPersonModal">
+                    New Person
+                </button>
+                <button type="button" class="btn btn-primary" onclick="newOrgModal()" id="organisation-btn"
+                    data-toggle="modal" data-target="#newOrganisationModal">
+                    New Organisation
+                </button>
+            </form>
+        </nav>
+    </div>
+
+
+    <!-- Person Modal -->
+    <div class="modal fade" id="newPersonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="personModalTitle">New Person</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span id="personModalCloseBtn" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="personForename">Forename</label>
+                            <input class="form-control" id="personForename" placeholder="Enter forename">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personSurname">Surname</label>
+                            <input class="form-control" id="personSurname" placeholder="Enter surname">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personEmail">Email Address</label>
+                            <input class="form-control" id="personEmail" placeholder="Enter email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personPhone">Phone Number</label>
+                            <input class="form-control" id="personPhone" placeholder="Enter phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personAddress">Address</label>
+                            <input class="form-control" id="personAddress" placeholder="Enter address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyNamesPerson">Oraganisation</label>
+                            <select class="form-control" id="companyNamesPerson">
+                                <option id="n/a">N/A</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary mr-auto" id="deletePersonBtn"
+                        onclick="deleteContact(true)">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="createPersonBtn"
+                        onclick="addPerson()">Create</button>
+                    <button type="button" class="btn btn-primary" id="submitPersonBtn" onclick="updatePerson()">Submit
+                        Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Organisation Modal -->
+    <div class="modal fade" id="newOrganisationModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="organisationModalTitle">New Organisation</h5>
+                    <button type="button" class="close" id="orgModalCloseBtn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="organisationName">Organisation Name</label>
+                            <input class="form-control" id="organisationName" placeholder="Enter organisation name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="organisationEmail">Email Address</label>
+                            <input class="form-control" id="organisationEmail" placeholder="Enter organisation email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="organisationPhone">Phone Number</label>
+                            <input class="form-control" id="organisationPhone"
+                                placeholder="Enter organisation phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="organisationAddress">Organisation Address</label>
+                            <input class="form-control" id="organisationAddress" placeholder="Enter compnay address">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary mr-auto" id="deleteOrganisationBtn"
+                        onclick="deleteContact(false)">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="createOrganisationBtn"
+                        onclick="addOrganisation()">Create</button>
+                    <button type="button" class="btn btn-primary" id="submitOrganisationBtn"
+                        onclick="updateOrganisation()">Submit Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="addressBook">
+        <table class="table" id="AddressTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Forename</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                </tr>
+            </thead>
+            <tbody class="table-body" id="table-body">
+
+                <!-- <tr class = "contact" onclick="loadPerson(this.id)" data-toggle="modal"
+                data-target="#newPersonModal">
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>123</td>
+                    <td>test@gmail.com</td>
+                    <td>MarkAddress</td>
+                </tr> -->
+
+            </tbody>
+        </table>
+
+        <div>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+
+
+            <script src="resources/js/bootstrap-notify.js"></script>
+            <script src="resources/js/main.js"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+.container {
+    padding-top: 3em;
+    padding-bottom: 3em;
+  }
+  
+#searchBar{
+    width: 17vw !important;
+}
+
+#companyNames{
+    margin-left: 1em;
+    width: 12vw;
+}
+
+.addressBook{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.table{
+    width: 70em;
+}
+
+
+#person-btn{
+    margin-left: 1em;
+    background-color: #f57c00;
+    border-color:  #f57c00;
+}
+
+#organisation-btn{
+    margin-left: 1em;
+    background-color: #388e3c;
+    border-color: #388e3c;
+}
+
+#organisationDetails-btn{
+    margin-left: 1em;
+    background-color: #1976d2;
+    border-color:#388e3c;
+}
+
+
+.contact:hover{
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+#deletePersonBtn, #deleteOrganisationBtn{
+    background-color: #e53935;
+    border-color: #e53935;
+}

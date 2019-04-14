@@ -1,0 +1,32 @@
+{
+  "name": "gen-1",
+  "version": "1.0.0",
+  "description": "Administrate",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --watch ./ --exec cross-env NODE_ENV=development node ./server.js"
+  },
+  "keywords": [
+    "node",
+    "restful",
+    "api"
+  ],
+  "author": "Bao Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.4.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {}
+}
