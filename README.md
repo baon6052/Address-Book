@@ -15,7 +15,7 @@
 
 #### Start Local Deployment
 * First "npm install"
-* Add Mongo password to nodemon.js
+* Add Mongo password to nodemon.json
 * To deploy locally "npm start" on the root folder
 * Go to "http://localhost:3000"
 
