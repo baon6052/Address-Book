@@ -9,6 +9,7 @@
 * Sort/Add Contacts by Organisation
 
 * Mongo DB
+* NodeJs
 * Vanilla UI
 
 ### Quick start
